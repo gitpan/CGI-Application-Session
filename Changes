@@ -1,0 +1,23 @@
+Revision history for Perl extension CGI::Application::Session.
+
+0.02  Tue Feb 10 14:59:51 EST 2004
+
+  - WARNING: changed the way in which session_config accepts
+    parameters.  Please check the docs because this will
+    affect anyone that was using the session_config method
+    in version 0.01.  It is more flexible now, and will allow
+    for future additions.
+
+  - altered doc example by moving authentication check
+    to cgiapp_prerun to co-inside with the examples in the
+    CGI::Application docs - "Clayton L. Scott" <tex@engsoc.org>
+
+  - automatically add a cookie to the outgoing headers if there
+    isn't one there already (requires CGI::Application 3.21)
+
+  - changed the code to conform to some of the CGI::Application
+    coding standards
+
+0.01  Sun Jan 18 11:06:49 2004
+	- original version; created by h2xs 1.19
+

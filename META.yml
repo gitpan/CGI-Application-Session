@@ -1,0 +1,19 @@
+--- #YAML:1.0
+name: CGI-Application-Session
+version: 0.02
+license: perl
+distribution_type: module
+requires:
+  CGI::Application: 3
+  CGI::Session: 3.95
+recommends: {}
+build_requires: {}
+conflicts: {}
+provides:
+  CGI::Application:
+    file: lib/CGI/Application/Session.pm
+    version: 0.02
+  CGI::Application::Session:
+    file: lib/CGI/Application/Session.pm
+    version: 0.02
+generated_by: Module::Build version 0.21

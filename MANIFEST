@@ -1,0 +1,14 @@
+Build.PL
+Changes
+lib/CGI/Application/Session.pm
+Makefile.PL
+MANIFEST
+META.yml
+README
+t/01_basic.t
+t/02_cookie.t
+t/03_nocookie.t
+t/99_pod.t
+t/TestAppBasic.pm
+t/TestAppCookie.pm
+t/TestAppNoCookie.pm
