@@ -1,23 +1,15 @@
 use Module::Build;
-my $class = Module::Build->subclass(
-     class => 'My::Builder',
-     code => q{
-        sub ACTION_dist {
-            my $self = shift;
-            `perldoc -t lib/CGI/Application/Session>README`;
-            $self->SUPER::ACTION_dist;
-        }
-    },
-);
 
-
-$class->new(
+Module::Build->new(
     module_name => 'CGI::Application::Session',
     license => 'perl',
     requires => {
-        'CGI::Application' => 3.0,
+        'CGI::Application' => 3.21,
         'CGI::Session'     => 3.95,
     },
     create_makefile_pl => 'traditional',
+    create_readme => 1,
+    dist_author => 'Cees Hek <cees@crtconsulting.ca>',
+    dist_abstract => 'Plugin that adds session support to CGI::Application',
 )->create_build_script;
 

@@ -1,5 +1,17 @@
 Revision history for Perl extension CGI::Application::Session.
 
+0.03  Tue Feb 10 22:12:29 EST 2004
+
+  - fool Module::Build into ignoring the 'package CGI::Application'
+    directive in CGI::Application::Session so that it doesn't list
+    CGI::Application as being provided by the distribution in the
+    META.yml file. (there must be a better way!)
+
+  - updated the Build.PL script
+
+  - Fixed a silly documentation error
+
+
 0.02  Tue Feb 10 14:59:51 EST 2004
 
   - WARNING: changed the way in which session_config accepts

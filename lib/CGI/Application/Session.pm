@@ -6,9 +6,12 @@ use CGI::Application 3.21;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 
-package CGI::Application;
+# The do{}; is there to fool Module::Build into ignoring this
+# package declaration when building he META.yml file (there
+# must be a better way to handle that!)
+do{}; package CGI::Application;
 
 sub session {
     my $self = shift;
@@ -237,7 +240,6 @@ In a CGI::Application module:
     my $self = shift;
  
     # Configure the session
-    $self->session_config("driver:File", $self->query, {Directory=>'/tmp'});
     $self->session_config(
        CGI_SESSION_OPTIONS => [ "driver:PostgreSQL;serializer:Storable", $self->query, {Handle=>$self->dbh} ],
        COOKIE_PARAMS       => {

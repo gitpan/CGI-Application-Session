@@ -128,7 +128,6 @@ EXAMPLE
         my $self = shift;
  
         # Configure the session
-        $self->session_config("driver:File", $self->query, {Directory=>'/tmp'});
         $self->session_config(
            CGI_SESSION_OPTIONS => [ "driver:PostgreSQL;serializer:Storable", $self->query, {Handle=>$self->dbh} ],
            COOKIE_PARAMS       => {

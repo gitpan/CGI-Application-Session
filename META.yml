@@ -1,19 +1,16 @@
 --- #YAML:1.0
 name: CGI-Application-Session
-version: 0.02
+version: 0.03
+author:
+  - Cees Hek <cees@crtconsulting.ca>
+abstract: |-
+  Plugin that adds session support to CGI::Application
 license: perl
-distribution_type: module
 requires:
-  CGI::Application: 3
+  CGI::Application: 3.21
   CGI::Session: 3.95
-recommends: {}
-build_requires: {}
-conflicts: {}
 provides:
-  CGI::Application:
-    file: lib/CGI/Application/Session.pm
-    version: 0.02
   CGI::Application::Session:
     file: lib/CGI/Application/Session.pm
-    version: 0.02
-generated_by: Module::Build version 0.21
+    version: 0.03
+generated_by: Module::Build version 0.23
