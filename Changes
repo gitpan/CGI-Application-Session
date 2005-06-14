@@ -1,5 +1,50 @@
 Revision history for Perl extension CGI::Application::Session.
 
+0.07  Sat Jun 11 13:24:38 EDT 2005
+
+    - This module has been renamed to CGI::Application::Plugin::Session,
+      and hence CGI::Application::Session has been depricated.  This
+      will be the last official version of this module (barring any
+      serious bugs).  CGI::Application::Plugin::Session version 0.07 is
+      identical in everything but name to this module, so it is a drop
+      in replacement.
+
+
+    - New config option DEFAULT_EXPIRY which will automatically call
+      the CGI::Session 'expire' method for all newly created sessions
+    - The cookie now sets the Expires header based on the expiry
+      time of the CGI::Session object (patch by Mark Stosberg)
+    - Changed the hash key where we store all the private info in
+      the CGI::Application object to be a bit more unique to this
+      plugin module
+    - expanded the coverage of the test suite
+  Bugs:
+    - If you didn't import the session_cookie method into your
+      namespace, calls to $self->session would fail.
+    - If you called session_cookie manually, it was possible under
+      specific conditions that the session wasn't created yet,
+      and the cookie would not be created properly
+
+0.06  Tue Oct 19 22:15:48 EST 2004
+
+    - CGI::Session will currently only work with CGI.pm so check to see
+      if CGI::Application is configured to use another CGI.pm like
+      module like CGI::Simple
+    - Be more intelligent about choosing a default temporary directory
+      for windows users (suggested by Dan Horne)
+    - Add a doc note to warn users when they change the name of the
+      cookie, to also notify CGI::Session->name
+
+0.05  Sun Sep 19 18:13:03 EST 2004
+
+    - scrap CGI::Application::Plugin support for simple Exporter
+      system.
+    - Moved module to the CGI::Application::Plugin namespace
+
+0.04  Mon Jul 26 23:44:39 EST 2004
+
+    - add support for the new CGI::Application::Plugin base class
+
 0.03  Tue Feb 10 22:12:29 EST 2004
 
   - fool Module::Build into ignoring the 'package CGI::Application'

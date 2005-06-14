@@ -1,4 +1,4 @@
-use Test::More tests => 4;
+use Test::More tests => 3;
 use File::Spec;
 BEGIN { use_ok('CGI::Application::Session') };
 
@@ -8,12 +8,11 @@ use strict;
 $ENV{CGI_APP_RETURN_ONLY} = 1;
 
 use CGI;
-use TestAppNoCookie;
-my $t1_obj = TestAppNoCookie->new(QUERY=>CGI->new());
+use TestAppDefaults;
+my $t1_obj = TestAppDefaults->new(QUERY=>CGI->new());
 my $t1_output = $t1_obj->run();
 
 like($t1_output, qr/session created/, 'session created');
-unlike($t1_output, qr/Set-Cookie: CGISESSID=[a-zA-Z0-9]+/, 'session cookie not set');
 
 my ($id1) = $t1_output =~ /id=([a-zA-Z0-9]+)/s;
 ok($id1, 'found session id');
@@ -22,5 +21,5 @@ ok($id1, 'found session id');
 # to disk until it is DESTROYed
 undef $t1_obj;
 
-unlink File::Spec->catdir('t', 'cgisess_'.$id1);
+unlink File::Spec->catdir(File::Spec->tmpdir, 'cgisess_'.$id1);
 

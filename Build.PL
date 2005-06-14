@@ -6,10 +6,11 @@ Module::Build->new(
     requires => {
         'CGI::Application' => 3.21,
         'CGI::Session'     => 3.95,
+        'File::Spec'       => 0,
     },
     create_makefile_pl => 'traditional',
     create_readme => 1,
-    dist_author => 'Cees Hek <cees@crtconsulting.ca>',
-    dist_abstract => 'Plugin that adds session support to CGI::Application',
+    dist_author => 'Cees Hek <ceeshek@gmail.com>',
+    dist_abstract => 'DEPRICATED in favour of CGI::Application::Plugin::Session',
 )->create_build_script;
 

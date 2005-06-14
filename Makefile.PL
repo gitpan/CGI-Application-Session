@@ -2,13 +2,14 @@
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
+          'PL_FILES' => {},
+          'INSTALLDIRS' => 'site',
           'NAME' => 'CGI::Application::Session',
           'VERSION_FROM' => 'lib/CGI/Application/Session.pm',
           'PREREQ_PM' => {
                            'CGI::Application' => '3.21',
-                           'CGI::Session' => '3.95'
-                         },
-          'INSTALLDIRS' => 'site',
-          'PL_FILES' => {}
+                           'CGI::Session' => '3.95',
+                           'File::Spec' => 0
+                         }
         )
 ;

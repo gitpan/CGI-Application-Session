@@ -1,18 +1,16 @@
-package TestAppNoCookie;
+package TestAppSid;
 
 use strict;
 
 use CGI::Application;
 use CGI::Application::Session;
-@TestAppNoCookie::ISA = qw(CGI::Application);
+@TestAppSid::ISA = qw(CGI::Application);
 
 sub cgiapp_init {
   my $self = shift;
 
-  $self->session_config(
-                        CGI_SESSION_OPTIONS => [ "driver:File", $self->query, {Directory=>'t/'} ],
-                        SEND_COOKIE         => 0,
-  );
+  my $sid = $self->query->cookie('CGISESSID');
+  $self->session_config(CGI_SESSION_OPTIONS => [ "driver:File", $sid, {Directory=>'t/'} ]);
 }
 
 sub setup {
@@ -30,8 +28,12 @@ sub test_mode {
   my $session = $self->session;
 
   $output .= $session->is_new ? "session created\n" : "session found\n";
+  my $value = $session->param('value') || "";
+  $output .= "value=$value\n";
   $output .= "id=".$session->id."\n";
 
+  $session->param('value' => 'test1');
+  
   return $output;
 }
 

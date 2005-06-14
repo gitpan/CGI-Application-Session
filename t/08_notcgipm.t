@@ -1,4 +1,4 @@
-use Test::More tests => 15;
+use Test::More tests => 13;
 use File::Spec;
 BEGIN { use_ok('CGI::Application::Session') };
 
@@ -18,19 +18,18 @@ like($t1_output, qr/Set-Cookie: CGISESSID=[a-zA-Z0-9]+/, 'session cookie set');
 my ($id1) = $t1_output =~ /id=([a-zA-Z0-9]+)/s;
 ok($id1, 'found session id');
 
-my $session_config = $t1_obj->session_config;
-is (ref($session_config), 'HASH', 'Retrieved Session Config');
-
-eval { my $session_config = $t1_obj->session_config(SEND_COOKIE => 1) };
-like($@, qr/Calling session_config after the session has already been created/, 'session_config called after session created');
-
 # Session object will not dissapear and be written
 # to disk until it is DESTROYed
 undef $t1_obj;
 
 
+{
+    package MyCGI;
+    @MyCGI::ISA = qw(CGI);
+};
+
 # Set the Session ID in a parameter
-my $t2_obj = TestAppBasic->new(QUERY=>CGI->new({ CGI::Session->name => $id1 }));
+my $t2_obj = TestAppBasic->new(QUERY=>MyCGI->new({ CGI::Session->name => $id1 }));
 my $t2_output = $t2_obj->run();
 
 like($t2_output, qr/session found/, 'session found');
